@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/guide/directory-structure/nuxt.config
 export default defineNuxtConfig({
   ssr: false,
+  css: [
+    'vueperslides/dist/vueperslides.css'
+  ],
   modules: [
     '@nuxtjs/supabase',
     '@nuxtjs/tailwindcss',
