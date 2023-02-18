@@ -5,19 +5,19 @@
 @layer base {
 
     body {
-        @apply bg-slate-900;
+        @apply bg-slate-800;
     }
 
     h1 {
-        @apply mt-2 mb-4 text-4xl text-amber-400 font-bold;
+        @apply mt-2 mb-4 text-4xl text-red-700 font-bold;
     }
 
     h2 {
-        @apply mt-2 mb-4 text-2xl text-amber-400 font-bold;
+        @apply mt-2 mb-4 text-2xl text-red-700 font-bold;
     }
 
     div {
-        @apply mx-auto mb-2 text-lg text-white text-center;
+        @apply mx-auto mb-2 text-lg text-gray-400 text-center;
     }
 
 }

@@ -4,7 +4,7 @@
       Filatelie, Numismatika, Grafika, Sběratelství
     </div>
     <h2>Aktuální nabídka</h2>
-    <div class="w-full md:w-4/5 mx-auto">
+    <div class="w-[800px] max-w-full mx-auto">
       <TheItemList />
     </div>
     <div>
