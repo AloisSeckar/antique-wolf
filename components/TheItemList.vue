@@ -1,12 +1,12 @@
 <template>
-    <VueperSlides>
-        <VueperSlide
-            v-for="(slide, i) in slides"
-            :key="i"
-            :title="slide.title"
-            :content="slide.content">
-        </VueperSlide>
-    </VueperSlides>
+  <VueperSlides>
+    <VueperSlide
+      v-for="(slide, i) in slides"
+      :key="i"
+      :title="slide.title"
+      :content="slide.content"
+    />
+  </VueperSlides>
 </template>
 
 <script setup lang="ts">
