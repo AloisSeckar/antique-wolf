@@ -34,6 +34,11 @@ const slides = computed(() => useItemStore().items)
   border-color: rgb(185 28 28);
 }
 
+.vueperslides__arrow {
+  color: rgb(185 28 28);
+}
+.vueperslides__arrow svg {stroke-width: 2}
+
 .vueperslide__content-wrapper {
   justify-content: end !important;
 }
