@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="m-1">
     <div class="text-xl">
       Filatelie, Numismatika, Grafika, Sběratelství
     </div>

@@ -2,6 +2,7 @@
   <VueperSlides
     class="no-shadow"
     slide-image-inside
+    bullets-outside
     :gap="3"
     :slide-ratio="1 / 3"
     :visible-slides="3"
