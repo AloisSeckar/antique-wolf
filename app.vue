@@ -21,4 +21,5 @@ useHead({
     lang: 'cs'
   }
 })
+useItemStore().loadItems()
 </script>

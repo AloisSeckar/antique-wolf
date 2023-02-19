@@ -12,15 +12,15 @@
       v-for="(slide, i) in slides"
       :key="i"
       class="bg-slate-600 border-4 border-black rounded"
-      :title="slide.title"
-      :content="slide.content"
+      :title="slide.description"
+      :content="slide.price + ' Kč'"
       :image="slide.image"
     />
   </VueperSlides>
 </template>
 
 <script setup lang="ts">
-import slides from '@/test/data.json'
+const slides = computed(() => useItemStore().items)
 </script>
 
 <style>
