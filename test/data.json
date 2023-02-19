@@ -1,27 +1,27 @@
  [
     {
-        "title": "Známka",
-        "content": "Známka Masaryk - 5 Kč",
+        "title": "Známka Masaryk",
+        "content": "5 Kč",
         "image": "/test/znamka.jpg"
     },
     {
-        "title": "Mince",
-        "content": "Mince zlatá - 10 Kč",
+        "title": "Mince zlatá",
+        "content": "10 Kč",
         "image": "/test/mince.jpg"
     },
     {
-        "title": "Kniha",
-        "content": "Stará kniha - 100 Kč",
+        "title": "Stará kniha",
+        "content": "100 Kč",
         "image": "/test/kniha.jpg"
     },
     {
-        "title": "Váza",
-        "content": "Starožitná porcelánová váza - 250 Kč",
+        "title": "Starožitná porcelánová váza",
+        "content": "250 Kč",
         "image": "/test/vaza.jpg"
     },
     {
-        "title": "Obraz",
-        "content": "Obraz - krajina - 300 Kč",
+        "title": "Obraz - krajina",
+        "content": "300 Kč",
         "image": "/test/obraz.jpg"
     }
 ]

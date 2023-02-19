@@ -31,11 +31,34 @@ import slides from '@/test/data.json'
 }
 
 .vueperslide--active {
-  border-color: rgb(185 28 28 / 1);
+  border-color: rgb(185 28 28);
+}
+
+.vueperslide__content-wrapper {
+  justify-content: end !important;
+}
+
+.vueperslide__title {
+  width: 100%;
+  margin-bottom: 0;
+  color: white;
+  background-color: rgb(30 41 59);
+  font-weight: bold;
+  line-height: 1.25rem;
+  padding-top: 4px;
+}
+.vueperslide__content {
+  width: 100%;
+  margin-bottom: 0;
+  color: white;
+  background-color: rgb(30 41 59);
+  line-height: 1.25rem;
+  padding: 4px;
 }
 
 .vueperslide__image {
-  margin: 12px;
+  margin: 10px;
+  margin-bottom: 60px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
