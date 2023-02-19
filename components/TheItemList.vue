@@ -15,6 +15,8 @@
       :title="slide.description"
       :content="slide.price + ' Kč'"
       :image="slide.image"
+      :link="slide.image"
+      open-in-new
     />
   </VueperSlides>
 </template>
