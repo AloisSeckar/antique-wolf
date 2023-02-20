@@ -4,7 +4,8 @@ import { DefaultConfigOptions } from '@formkit/vue'
 
 const config: DefaultConfigOptions = {
   locales: { en, de, cs },
-  locale: 'en'
+  locale: 'cs',
+  theme: 'genesis'
 }
 
 export default config
