@@ -29,3 +29,10 @@ useHead({
 })
 useItemStore().loadItems()
 </script>
+
+<style>
+/* otherwise `genesis` theme changes to "blank" after an input */
+input:not([type=button]) {
+    background-color: rgb(232, 240, 254) !important;
+}
+</style>

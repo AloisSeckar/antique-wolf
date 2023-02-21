@@ -11,6 +11,7 @@ export const useLoginStore = defineStore({
       if (data) {
         if (data.user?.email) {
           this.user = data.user.email
+          return navigateTo('/admin/items')
         } else {
           console.error('User undefined!')
         }
