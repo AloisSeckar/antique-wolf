@@ -35,4 +35,7 @@ useItemStore().loadItems()
 input:not([type=button]) {
     background-color: rgb(232, 240, 254) !important;
 }
+select {
+    background-color: rgb(232, 240, 254) !important;
+}
 </style>

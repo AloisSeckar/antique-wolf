@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export interface WolfItem {
+export type WolfItem = {
     id: number,
     description: string,
     price: number,
@@ -17,7 +17,8 @@ export const useItemStore = defineStore({
   id: 'item-store',
   state: () => {
     return {
-      items: [] as WolfItem[]
+      items: [] as WolfItem[],
+      selected: -1
     }
   },
   actions: {

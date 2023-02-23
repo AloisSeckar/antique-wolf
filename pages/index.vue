@@ -7,7 +7,7 @@
       Aktuální nabídka
     </h2>
     <div class="w-[800px] max-w-full mx-auto">
-      <TheItemList />
+      <ItemList />
     </div>
     <div>
       Toto a další zboží je k odběru na prodejně:<br>
