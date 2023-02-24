@@ -6,5 +6,8 @@
     <div>
       <ItemSelect />
     </div>
+    <div>
+      <ItemEditor />
+    </div>
   </div>
 </template>
