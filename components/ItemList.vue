@@ -3,11 +3,9 @@
     class="no-shadow"
     slide-image-inside
     bullets-outside
-    :gap="3"
-    :slide-ratio="1 / 3"
-    :visible-slides="3"
+    :slide-ratio="1 / 1"
+    :visible-slides="1"
     :dragging-distance="60"
-    :breakpoints="{ 950: { visibleSlides: 2, slideRatio: 1/2 }, 600: { visibleSlides: 1, slideRatio: 1/1 } }"
   >
     <VueperSlide
       v-for="(slide, i) in slides"
@@ -52,7 +50,8 @@ const slides = computed(() => useItemStore().items)
   color: white;
   background-color: rgb(30 41 59);
   font-weight: bold;
-  line-height: 1.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
   padding-top: 4px;
 }
 .vueperslide__content {
@@ -60,13 +59,13 @@ const slides = computed(() => useItemStore().items)
   margin-bottom: 0;
   color: white;
   background-color: rgb(30 41 59);
-  line-height: 1.25rem;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
   padding: 4px;
 }
 
 .vueperslide__image {
-  margin: 10px;
-  margin-bottom: 60px;
+  margin: 1rem 5rem 6rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

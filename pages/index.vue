@@ -6,7 +6,7 @@
     <h2 class="mb-4">
       Aktuální nabídka
     </h2>
-    <div class="w-[800px] max-w-full mx-auto">
+    <div class="w-[600px] max-w-full mx-auto">
       <ItemList />
     </div>
     <div>
