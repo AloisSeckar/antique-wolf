@@ -22,3 +22,7 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+useLoginStore().refresh()
+</script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FormKit type="form" :submit-label="label" @submit="saveForm">
+    <FormKit type="form" :submit-label="label" @submit="$emit('saveItem', item)">
       <FormKit
         id="description"
         v-model="item.description"
@@ -47,9 +47,5 @@ import type { WolfItem } from '@/composables/useItemStore'
 const item = ref({} as WolfItem)
 const label = 'Uložit'
 
-const saveForm = () => {
-  alert('will be saved')
-
-  // saving files - https://formkit.com/inputs/file#uploading-files
-}
+defineEmits<{(e: 'saveItem', option: WolfItem): void}>()
 </script>

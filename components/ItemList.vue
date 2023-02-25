@@ -6,6 +6,8 @@
     :slide-ratio="1 / 1"
     :visible-slides="1"
     :dragging-distance="60"
+    @previous="refresh"
+    @next="refresh"
   >
     <VueperSlide
       v-for="(slide, i) in slides"
@@ -22,6 +24,8 @@
 
 <script setup lang="ts">
 const slides = computed(() => useItemStore().items)
+
+const refresh = () => useLoginStore().refresh()
 </script>
 
 <style>

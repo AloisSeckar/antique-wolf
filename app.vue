@@ -13,7 +13,7 @@
         Wolf by Vecteezy
       </NuxtLink>
       |
-      <NuxtLink to="/admin/login" class="ml-1 hover:text-amber-200">
+      <NuxtLink to="/admin/items" class="ml-1 hover:text-amber-200">
         A
       </NuxtLink>
     </footer>

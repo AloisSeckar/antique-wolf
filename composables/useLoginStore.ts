@@ -1,7 +1,7 @@
 export type WolfUser = {
   user?: string,
-  login?: number,
-  expiration?: number
+  loginExp?: number,
+  lastAction?: number
 }
 
 export const useLoginStore = defineStore({
@@ -17,8 +17,8 @@ export const useLoginStore = defineStore({
       if (data) {
         if (data.user?.email) {
           this.user.user = data.user.email
-          this.user.login = Math.floor(Date.now() / 1000)
-          this.user.expiration = 600
+          this.user.loginExp = 600
+          this.user.lastAction = getCurrentTimestamp()
           return navigateTo('/admin/items')
         } else {
           console.error('User undefined!')
@@ -29,8 +29,26 @@ export const useLoginStore = defineStore({
     },
     logout () {
       this.user = {}
+    },
+    refresh () {
+      if (this.isAuth) {
+        this.user.lastAction = getCurrentTimestamp()
+      } else {
+        this.logout()
+      }
     }
   },
   getters: {
+    isAuth (): boolean {
+      if (this.user.user) {
+        const secondsSinceLogin = Math.floor(Date.now() / 1000) - this.user.lastAction!
+        return secondsSinceLogin <= this.user.loginExp!
+      }
+      return false
+    }
   }
 })
+
+function getCurrentTimestamp (): number {
+  return Math.floor(Date.now() / 1000)
+}

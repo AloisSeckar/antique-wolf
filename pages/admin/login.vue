@@ -25,6 +25,8 @@
 </template>
 
 <script setup lang="ts">
+useLoginStore().refresh()
+
 const email = ref('')
 const password = ref('')
 
