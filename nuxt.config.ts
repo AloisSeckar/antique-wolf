@@ -13,7 +13,8 @@ export default defineNuxtConfig({
       {
         autoImports: ['defineStore']
       }
-    ]
+    ],
+    '@vueuse/nuxt'
   ],
   runtimeConfig: {
     public: {

@@ -1,5 +1,3 @@
-import { defineStore } from 'pinia'
-
 export type WolfItem = {
     id: number,
     description: string,
