@@ -11,3 +11,9 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  middleware: 'admin-items'
+})
+</script>
