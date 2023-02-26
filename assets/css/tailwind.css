@@ -13,7 +13,7 @@
     }
 
     h2 {
-        @apply mt-2 text-2xl text-red-700 font-bold;
+        @apply mt-2 mb-2 text-2xl text-red-700 font-bold;
     }
 
     div {

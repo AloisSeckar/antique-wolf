@@ -13,8 +13,10 @@
         Wolf by Vecteezy
       </NuxtLink>
       |
-      <NuxtLink to="/admin/items" class="ml-1 hover:text-amber-200">
-        A
+      <NuxtLink to="/admin/items">
+        <div class="inline ml-1 text-xs text-white hover:text-amber-200" title="Administrace">
+          A
+        </div>
       </NuxtLink>
     </footer>
   </div>

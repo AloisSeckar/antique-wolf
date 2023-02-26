@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2>Editace nabídky předmětů</h2>
     <div>
       <ItemSelect @select-item="changeItem" />
     </div>
+    <h2>Editace údajů předmětu</h2>
     <div>
       <ItemEditor :item-id="itemId" @save-item="saveItem" />
     </div>

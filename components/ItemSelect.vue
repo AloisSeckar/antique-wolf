@@ -5,7 +5,7 @@
       v-model="item"
       type="select"
       name="selectItem"
-      label="Vyberte existující:"
+      label="Vyberte předmět pro editaci:"
       validation="required"
       :options="options"
       @change="$emit('selectItem', item)"
