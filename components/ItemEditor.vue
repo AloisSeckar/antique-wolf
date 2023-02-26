@@ -1,9 +1,9 @@
 <template>
   <div>
-    <FormKit type="form" :submit-label="label" @submit="$emit('saveItem', item)">
+    <FormKit type="form" :submit-label="label" @submit="$emit('saveItem', wolfItem)">
       <FormKit
         id="description"
-        v-model="item.description"
+        v-model="wolfItem.description"
         type="text"
         name="description"
         label="Popis:"
@@ -12,7 +12,7 @@
       />
       <FormKit
         id="price"
-        v-model="item.price"
+        v-model="wolfItem.price"
         type="number"
         name="cena"
         label="Cena (Kč):"
@@ -31,7 +31,7 @@
       />
       <FormKit
         id="valid"
-        v-model="item.valid"
+        v-model="wolfItem.valid"
         type="checkbox"
         name="valid"
         label="Zobrazovat na webu"
@@ -44,7 +44,17 @@
 <script setup lang="ts">
 import type { WolfItem } from '@/composables/useItemStore'
 
-const item = ref({} as WolfItem)
+const props = defineProps({
+  itemId: { type: Number, required: true }
+})
+
+const wolfItem = computed(() => {
+  if (props.itemId !== -1) {
+    return useItemStore().getById(props.itemId)!
+  } else {
+    return {} as WolfItem
+  }
+})
 const label = 'Uložit'
 
 defineEmits<{(e: 'saveItem', option: WolfItem): void}>()

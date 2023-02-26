@@ -15,8 +15,7 @@ export const useItemStore = defineStore({
   id: 'item-store',
   state: () => {
     return {
-      items: [] as WolfItem[],
-      selected: -1
+      items: [] as WolfItem[]
     }
   },
   actions: {
@@ -37,5 +36,8 @@ export const useItemStore = defineStore({
     }
   },
   getters: {
+    getById: (state) => {
+      return (itemId: number) => state.items.find((i: WolfItem) => i.id === itemId)
+    }
   }
 })

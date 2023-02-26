@@ -23,5 +23,5 @@ const options = computed(() => {
 })
 const item = ref(-1)
 
-defineEmits<{(e: 'selectItem', option: String): void}>()
+defineEmits<{(e: 'selectItem', option: number): void}>()
 </script>

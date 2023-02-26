@@ -5,7 +5,7 @@
       <ItemSelect @select-item="changeItem" />
     </div>
     <div>
-      <ItemEditor @save-item="saveItem" />
+      <ItemEditor :item-id="itemId" @save-item="saveItem" />
     </div>
   </div>
 </template>
@@ -19,9 +19,10 @@ definePageMeta({
   middleware: 'admin-items'
 })
 
-const changeItem = (item: string) => {
+const itemId = ref(-1)
+const changeItem = (item: number) => {
   useLoginStore().refresh()
-  console.log(item + 'selected')
+  itemId.value = item
 }
 
 const saveItem = (item: WolfItem) => {
