@@ -25,9 +25,36 @@ const changeItem = (item: number) => {
   itemId.value = item
 }
 
-const saveItem = (item: WolfItem) => {
+const saveItem = async (formData: WolfItem) => {
   useLoginStore().refresh()
-  console.log(item + 'will be saved')
-  // saving files - https://formkit.com/inputs/file#uploading-files
+
+  // https://formkit.com/inputs/form#submitting-as-a-page-request
+
+  const formBody = new FormData()
+  formBody.append('fileName', formData.imageFile!.at(0)!.name)
+  formBody.append('fileData', formData.imageFile!.at(0)!.file!)
+
+  const { data, error } = await useFetch('/api/imageUpload', {
+    method: 'POST',
+    body: formBody
+  })
+
+  console.log(data.value)
+  console.log(error.value)
+
+  /*
+  // saving item data
+  formData.image = formData.imageFile!.name
+  console.log(formData)
+
+  // saving file
+  const path = formData.imageFile!.name
+  console.log(formData.imageFile)
+  console.log(formData.imageFile.fileData)
+  const base64file = await getBase64(formData.imageFile!.fileData!)
+
+  await useSupabaseClient()?.storage?.from('wolf-images')?.upload(path, getArrayBuffer(base64file), { upsert: true })?.then(() => console.log('yay'))
+    .catch(e => console.log('error' + e))
+    */
 }
 </script>

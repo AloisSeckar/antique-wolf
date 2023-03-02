@@ -1,8 +1,16 @@
+export type WolfFile = {
+  name: string,
+  type: string,
+  file?: File,
+  base64File?: string,
+}
+
 export type WolfItem = {
     id: number,
     description: string,
     price: number,
     image: string,
+    imageFile?: WolfFile[]
     created: Date,
     edited: Date,
     author: string,

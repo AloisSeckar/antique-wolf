@@ -22,6 +22,7 @@
       <!-- TODO existujici image -->
       <FormKit
         id="image"
+        v-model="wolfItem.imageFile"
         type="file"
         accept=".jpg,.png,.gif,.tif"
         multiple="false"
