@@ -10,18 +10,30 @@ export default defineEventHandler(async (event) => {
     const fileType = body!.at(1)!.type
     const fileData = body!.at(1)!.data
 
-    const response = await serverSupabaseClient(event).storage
-      .from('wolf-images')
+    const supabaseAPI = serverSupabaseClient(event).storage.from('wolf-images')
+
+    const response = await supabaseAPI
       .upload(fileName, fileData, {
         contentType: fileType,
         upsert: true
       })
 
-    return {
-      data: response.data,
-      error: response.error?.message
+    if (response.data && response.data.path) {
+      return {
+        url: supabaseAPI.getPublicUrl(response.data.path).data?.publicUrl
+      }
+    } else if (response.error) {
+      return {
+        error: response.error.message
+      }
+    } else {
+      return {
+        error: 'No response from Supabase'
+      }
     }
   } catch (error: any) {
-    return { error: error.message }
+    return {
+      error: error.message
+    }
   }
 })

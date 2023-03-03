@@ -34,27 +34,16 @@ const saveItem = async (formData: WolfItem) => {
   formBody.append('fileName', formData.imageFile!.at(0)!.name)
   formBody.append('fileData', formData.imageFile!.at(0)!.file!)
 
-  const { data, error } = await useFetch('/api/imageUpload', {
+  const { data } = await useFetch('/api/imageUpload', {
     method: 'POST',
     body: formBody
   })
 
-  console.log(data.value)
-  console.log(error.value)
-
-  /*
-  // saving item data
-  formData.image = formData.imageFile!.name
-  console.log(formData)
-
-  // saving file
-  const path = formData.imageFile!.name
-  console.log(formData.imageFile)
-  console.log(formData.imageFile.fileData)
-  const base64file = await getBase64(formData.imageFile!.fileData!)
-
-  await useSupabaseClient()?.storage?.from('wolf-images')?.upload(path, getArrayBuffer(base64file), { upsert: true })?.then(() => console.log('yay'))
-    .catch(e => console.log('error' + e))
-    */
+  console.log(data.value?.url)
+  if (data.value?.url) {
+    // process further with storing db object
+  } else {
+    // handle data.value?.error
+  }
 }
 </script>
