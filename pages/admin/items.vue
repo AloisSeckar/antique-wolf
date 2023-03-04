@@ -34,14 +34,26 @@ const saveItem = async (formData: WolfItem) => {
   formBody.append('fileName', formData.imageFile!.at(0)!.name)
   formBody.append('fileData', formData.imageFile!.at(0)!.file!)
 
-  const { data } = await useFetch('/api/imageUpload', {
+  const { data: imgData } = await useFetch('/api/imageUpload', {
     method: 'POST',
     body: formBody
   })
 
-  console.log(data.value?.url)
-  if (data.value?.url) {
-    // process further with storing db object
+  console.log(imgData.value?.url)
+  if (imgData.value?.url) {
+    const testItem: WolfItem = {
+      description: formData.description,
+      price: formData.price,
+      image: imgData.value?.url,
+      created: new Date(),
+      edited: new Date(),
+      author: useLoginStore().user.user!,
+      valid: !!formData.valid
+    }
+    const { data: itemData } = await useFetch('/api/itemUpdate', {
+      method: 'POST',
+      body: testItem
+    })
   } else {
     // handle data.value?.error
   }

@@ -6,7 +6,7 @@ export type WolfFile = {
 }
 
 export type WolfItem = {
-    id: number,
+    id?: number,
     description: string,
     price: number,
     image: string,
