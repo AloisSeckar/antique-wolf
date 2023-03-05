@@ -34,7 +34,7 @@ useItemStore().loadItems()
 
 <style>
 /* otherwise `genesis` theme changes to "blank" after an input */
-input:not([type=button]) {
+input:not([type=button]):not([type=file]) {
     background-color: rgb(232, 240, 254) !important;
 }
 select {
