@@ -2,8 +2,6 @@ import { serverSupabaseClient } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
   try {
-    console.log('image upload server side')
-
     const body = await readMultipartFormData(event)
 
     const fileName = body!.at(0)!.data.toString()

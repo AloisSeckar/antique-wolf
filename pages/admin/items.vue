@@ -28,18 +28,16 @@ const changeItem = (item: number) => {
 const saveItem = async (formData: WolfItem) => {
   useLoginStore().refresh()
 
-  // https://formkit.com/inputs/form#submitting-as-a-page-request
-
+  // image
   const formBody = new FormData()
   formBody.append('fileName', formData.imageFile!.at(0)!.name)
   formBody.append('fileData', formData.imageFile!.at(0)!.file!)
-
   const { data: imgData } = await useFetch('/api/imageUpload', {
     method: 'POST',
     body: formBody
   })
 
-  console.log(imgData.value?.url)
+  // db entry
   if (imgData.value?.url) {
     const testItem: WolfItem = {
       description: formData.description,
@@ -54,8 +52,14 @@ const saveItem = async (formData: WolfItem) => {
       method: 'POST',
       body: testItem
     })
+
+    if (itemData.value?.itemId) {
+      alert('inserted ' + itemData.value?.itemId)
+    } else {
+      // handle itemData.value?.error
+    }
   } else {
-    // handle data.value?.error
+    // handle imgData.value?.error
   }
 }
 </script>
