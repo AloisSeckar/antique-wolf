@@ -58,4 +58,8 @@ select {
   margin-left: 120px !important;
   margin-right: 5px !important;
 }
+/* long file names overflow */
+.formkit-file-name {
+  word-break: break-all;
+}
 </style>
