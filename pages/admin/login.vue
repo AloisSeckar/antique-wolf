@@ -11,6 +11,7 @@
         name="email"
         label="E-mail:"
         validation="required"
+        autocomplete="off"
       />
       <FormKit
         id="password"
@@ -19,6 +20,7 @@
         name="password"
         label="Heslo:"
         validation="required"
+        autocomplete="off"
       />
     </FormKit>
   </div>
