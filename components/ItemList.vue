@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-const slides = computed(() => useItemStore().items)
+const slides = computed(() => useItemStore().getValid())
 
 const refresh = () => useLoginStore().refresh()
 </script>

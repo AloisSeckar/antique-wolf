@@ -32,7 +32,6 @@ export const useItemStore = defineStore({
       const { data, error } = await supabase
         .from('wolf_items')
         .select('id, description, price, image, created, edited, author, valid')
-        .eq('valid', true)
 
       if (data) {
         console.debug("'wolf_items' loaded from Supabase")
@@ -46,6 +45,9 @@ export const useItemStore = defineStore({
   getters: {
     getById: (state) => {
       return (itemId: number) => state.items.find((i: WolfItem) => i.id === itemId)
+    },
+    getValid: (state) => {
+      return () => state.items.filter((i: WolfItem) => i.valid === true)
     }
   }
 })
