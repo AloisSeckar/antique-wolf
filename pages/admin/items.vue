@@ -25,41 +25,54 @@ const changeItem = (item: number) => {
   itemId.value = item
 }
 
-const saveItem = async (formData: WolfItem) => {
+const saveItem = async (item: WolfItem) => {
   useLoginStore().refresh()
 
-  // image
-  const formBody = new FormData()
-  formBody.append('fileName', formData.imageFile!.at(0)!.name)
-  formBody.append('fileData', formData.imageFile!.at(0)!.file!)
-  const { data: imgData } = await useFetch('/api/imageUpload', {
-    method: 'POST',
-    body: formBody
-  })
-
-  // db entry
-  if (imgData.value?.url) {
-    const testItem: WolfItem = {
-      description: formData.description,
-      price: formData.price,
-      image: imgData.value?.url,
-      created: new Date(),
-      edited: new Date(),
-      author: useLoginStore().user.user!,
-      valid: !!formData.valid
+  try {
+    // image
+    // TODO change existing
+    if (!item.id) {
+      const formBody = new FormData()
+      formBody.append('fileName', item.imageFile!.at(0)!.name)
+      formBody.append('fileData', item.imageFile!.at(0)!.file!)
+      const { data: imgData } = await useFetch('/api/imageUpload', { method: 'POST', body: formBody })
+      if (imgData?.value?.url) {
+        item.image = imgData.value.url
+      } else {
+        console.error('Failed to save image')
+        throw new Error(imgData?.value?.error)
+      }
     }
-    const { data: itemData } = await useFetch('/api/itemUpdate', {
-      method: 'POST',
-      body: testItem
-    })
 
-    if (itemData.value?.itemId) {
-      alert('inserted ' + itemData.value?.itemId)
+    // sanitize data
+    if (!item.valid) {
+      item.valid = false
+    }
+    if (!item.created) {
+      item.created = new Date()
+    }
+    item.edited = new Date()
+    item.author = useLoginStore().user.user!
+    delete item.imageFile
+
+    // db entry
+    const { data: itemData } = await processItem(item)
+    if (itemData?.value?.itemId) {
+      alert('processed ' + itemData.value.itemId)
     } else {
-      // handle itemData.value?.error
+      console.error('Failed to save db entry')
+      throw new Error(itemData?.value?.error)
     }
+  } catch (error) {
+    console.error('Failed to save item')
+  }
+}
+
+async function processItem (body: WolfItem) {
+  if (body.id) {
+    return await useFetch('/api/itemUpdate', { method: 'POST', body })
   } else {
-    // handle imgData.value?.error
+    return await useFetch('/api/itemInsert', { method: 'POST', body })
   }
 }
 </script>

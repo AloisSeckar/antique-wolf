@@ -1,24 +1,18 @@
 import { serverSupabaseClient } from '#supabase/server'
-import { WolfItem, WolfItemDB } from '@/composables/useItemStore'
+import { WolfItemDB } from '@/composables/useItemStore'
 
 export default defineEventHandler(async (event) => {
   try {
-    const item: WolfItem = await readBody(event)
-    const itemId = item.id
-
-    delete item.id
-    delete item.imageFile
-
+    const item = await readBody(event)
     const { data, error } = await serverSupabaseClient<WolfItemDB>(event)
       .from('wolf_items')
-      .update(item)
-      .eq('id', itemId)
+      .insert(item)
       .select()
 
     if (data && data[0]) {
       console.log('ok')
       return {
-        itemId
+        itemId: data[0].id
       }
     } else if (error) {
       console.log(error)
