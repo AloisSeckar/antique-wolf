@@ -59,9 +59,7 @@ const saveItem = async (item: WolfItem) => {
     const { data: itemData } = await processItem(item)
     if (itemData?.value?.itemId) {
       alert('processed ' + itemData.value.itemId)
-      // reload items
-      // TODO only load the last change?
-      useItemStore().loadItems()
+      useItemStore().reloadItem(itemData.value.itemId)
     } else {
       console.error('Failed to save db entry')
       throw new Error(itemData?.value?.error)
