@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TheModal v-show="useModalStore().show" />
     <NuxtLink to="/">
       <h1>Jaroslav Wolf, Antikvariát Hobby</h1>
     </NuxtLink>

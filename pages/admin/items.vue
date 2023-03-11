@@ -58,14 +58,16 @@ const saveItem = async (item: WolfItem) => {
     // db entry
     const { data: itemData } = await processItem(item)
     if (itemData?.value?.itemId) {
-      alert('processed ' + itemData.value.itemId)
+      console.debug('item ' + itemData.value.itemId + ' processed')
       useItemStore().reloadItem(itemData.value.itemId)
+      useModalStore().showModal('Informace', 'Změny byly úspěšně uloženy')
     } else {
       console.error('Failed to save db entry')
       throw new Error(itemData?.value?.error)
     }
   } catch (error) {
     console.error('Failed to save item')
+    useModalStore().showModal('Chyba', 'Změny se nepodařilo uložit :(')
   }
 }
 
