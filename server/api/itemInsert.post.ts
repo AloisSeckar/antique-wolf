@@ -10,12 +10,13 @@ export default defineEventHandler(async (event) => {
       .select()
 
     if (data && data[0]) {
-      console.log('ok')
+      console.debug('insert successful')
       return {
         itemId: data[0].id
       }
     } else if (error) {
-      console.log(error)
+      console.warn('insert failed')
+      console.error(error)
       return {
         error: error.message
       }

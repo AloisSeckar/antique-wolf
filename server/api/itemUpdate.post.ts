@@ -16,12 +16,13 @@ export default defineEventHandler(async (event) => {
       .select()
 
     if (data && data[0]) {
-      console.log('ok')
+      console.debug('update successful')
       return {
         itemId
       }
     } else if (error) {
-      console.log(error)
+      console.warn('update failed')
+      console.error(error)
       return {
         error: error.message
       }
