@@ -1,6 +1,11 @@
 <template>
   <div>
-    <FormKit type="form" :submit-label="label" @submit="$emit('saveItem', wolfItem)">
+    <FormKit
+      id="wolf"
+      type="form"
+      :actions="false"
+      @submit="$emit('saveItem', wolfItem)"
+    >
       <FormKit
         id="description"
         v-model="wolfItem.description"
@@ -39,6 +44,21 @@
         help="Nezaškrtnuté předměty zde bude možné dále upravovat, ale veřejnost je neuvidí"
       />
     </FormKit>
+    <FormKit
+      id="save"
+      type="submit"
+      submit-label="Uložit"
+      help="Uloží změny do databáze"
+      @click="$formkit.submit('wolf')"
+    />
+    <FormKit
+      v-if="wolfItem.id"
+      id="delete"
+      type="button"
+      label="Smazat"
+      help="Zcela odstraní tento záznam z databáze"
+      @click="$emit('deleteItem', wolfItem.id)"
+    />
   </div>
 </template>
 
@@ -56,7 +76,12 @@ const wolfItem = computed(() => {
     return {} as WolfItem
   }
 })
-const label = 'Uložit'
 
-defineEmits<{(e: 'saveItem', option: WolfItem): void}>()
+defineEmits<{(e: 'saveItem', option: WolfItem): void, (e: 'deleteItem', itemId: number): void}>()
 </script>
+
+<style>
+#delete {
+  background-color: rgb(185 28 28);
+}
+</style>
