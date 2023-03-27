@@ -5,7 +5,7 @@
     </div>
     <h2>Editace údajů předmětu</h2>
     <div>
-      <ItemEditor :item-id="itemId" @save-item="saveItem" />
+      <ItemEditor :item-id="itemId" @save-item="saveItem" @delete-item="deleteItem" />
     </div>
   </div>
 </template>
@@ -68,6 +68,26 @@ const saveItem = async (item: WolfItem) => {
   } catch (error) {
     console.error('Failed to save item')
     useModalStore().showModal('Chyba', 'Změny se nepodařilo uložit :(')
+  }
+}
+
+const deleteItem = async (delId: number) => {
+  useLoginStore().refresh()
+  try {
+    const { data: result } = await useFetch('/api/itemDelete', { method: 'POST', body: { itemId: delId } })
+    console.log(result.value)
+    if (result.value?.result === 'OK') {
+      itemId.value = -1
+      console.debug('item ' + delId + ' processed')
+      useItemStore().loadItems() // TODO only remove the one
+      useModalStore().showModal('Informace', 'Záznam byl úspěšně smazán')
+    } else {
+      console.error('Failed to save db entry')
+      throw new Error(result.value?.result)
+    }
+  } catch (error) {
+    console.error('Failed to delete item')
+    useModalStore().showModal('Chyba', 'Záznam se nepodařilo smazat :(')
   }
 }
 
