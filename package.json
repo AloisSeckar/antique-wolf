@@ -11,17 +11,17 @@
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "12.0.0",
     "@nuxtjs/supabase": "0.3.1",
-    "@nuxtjs/tailwindcss": "6.4.1",
+    "@nuxtjs/tailwindcss": "6.6.4",
     "@vueuse/core": "9.13.0",
     "@vueuse/nuxt": "9.13.0",
-    "eslint": "8.35.0",
-    "nuxt": "3.2.3",
+    "eslint": "8.36.0",
+    "nuxt": "3.3.2",
     "tailwindcss": "3.2.7"
   },
   "dependencies": {
     "@formkit/nuxt": "1.0.0-beta.15",
-    "@pinia/nuxt": "0.4.6",
-    "pinia": "2.0.32",
+    "@pinia/nuxt": "0.4.7",
+    "pinia": "2.0.33",
     "vueperslides": "3.5.1"
   },
   "overrides": {
