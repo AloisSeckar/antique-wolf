@@ -55,8 +55,7 @@ const refresh = () => useLoginStore().refresh()
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 2rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 .vueperslide__content {
   width: 100%;
