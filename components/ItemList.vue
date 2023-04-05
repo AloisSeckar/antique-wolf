@@ -3,7 +3,7 @@
     class="no-shadow"
     slide-image-inside
     bullets-outside
-    :slide-ratio="1 / 1"
+    :slide-ratio="4 / 5"
     :visible-slides="1"
     :dragging-distance="60"
     @previous="refresh"
@@ -14,7 +14,6 @@
       :key="i"
       class="bg-slate-600 border-4 border-black rounded"
       :title="slide.description"
-      :content="slide.price + ' Kč'"
       :image="slide.image"
       :link="slide.image"
       open-in-new
@@ -56,7 +55,8 @@ const refresh = () => useLoginStore().refresh()
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 2rem;
-  padding-top: 4px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 .vueperslide__content {
   width: 100%;
@@ -69,7 +69,7 @@ const refresh = () => useLoginStore().refresh()
 }
 
 .vueperslide__image {
-  margin: 1rem 5rem 6rem;
+  margin: 1rem 5rem 4rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

@@ -10,7 +10,7 @@
       <ItemList />
     </div>
     <div>
-      Toto a další zboží je k odběru na prodejně:<br>
+      Toto a další zboží je k vidění a k odběru na prodejně:<br>
       <a href="https://www.firmy.cz/detail/2349900-jaroslav-wolf-antikvariat-hobby-praha-branik.html" title="Mapa">
         <strong>Branická 780/87, 147 00 Praha, Braník</strong>
       </a>
