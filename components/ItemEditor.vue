@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import type { WolfItem } from '@/composables/useItemStore'
+import type { WolfItem } from '@/server/types/dbTypes'
 
 const props = defineProps({
   itemId: { type: Number, required: true }

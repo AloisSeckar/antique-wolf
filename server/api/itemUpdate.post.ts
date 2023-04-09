@@ -1,6 +1,6 @@
 import { ItemResult } from '../types/apiTypes'
+import { WolfItem, WolfItemDB } from '../types/dbTypes'
 import { serverSupabaseClient } from '#supabase/server'
-import { WolfItem, WolfItemDB } from '@/composables/useItemStore'
 
 export default defineEventHandler(async (event): Promise<ItemResult> => {
   try {

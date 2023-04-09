@@ -1,8 +1,4 @@
-export type WolfUser = {
-  user?: string,
-  loginExp?: number,
-  lastAction?: number
-}
+import { WolfUser } from '@/server/types/utilTypes'
 
 export const useLoginStore = defineStore({
   id: 'login-store',

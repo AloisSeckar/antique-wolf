@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { WolfItem } from '@/composables/useItemStore'
+import { WolfItem } from '@/server/types/dbTypes'
 
 useLoginStore().refresh()
 
