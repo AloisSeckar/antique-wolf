@@ -57,10 +57,12 @@ const saveItem = async (item: WolfItem) => {
 
     // db entry
     const { data: itemData } = await processItem(item)
-    if (itemData?.value?.itemId) {
-      console.debug('item ' + itemData.value.itemId + ' processed')
-      useItemStore().reloadItem(itemData.value.itemId)
+    const itemId = itemData?.value?.itemId
+    if (itemId) {
+      console.debug('item ' + itemId + ' processed')
+      useItemStore().reloadItem(itemId)
       useModalStore().showModal('Informace', 'Změny byly úspěšně uloženy')
+      changeItem(itemId)
     } else {
       console.error('Failed to save db entry')
       throw new Error(itemData?.value?.error)
@@ -78,9 +80,10 @@ const deleteItem = async (delId: number) => {
     console.log(result.value)
     if (result.value?.result === 'OK') {
       itemId.value = -1
-      console.debug('item ' + delId + ' processed')
+      console.debug('item ' + delId + ' deleted')
       useItemStore().loadItems() // TODO only remove the one
       useModalStore().showModal('Informace', 'Záznam byl úspěšně smazán')
+      changeItem(-1)
     } else {
       console.error('Failed to save db entry')
       throw new Error(result.value?.result)
