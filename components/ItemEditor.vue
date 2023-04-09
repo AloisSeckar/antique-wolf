@@ -70,7 +70,9 @@ const wolfItem = computed(() => {
   if (itemId !== -1) {
     return useItemStore().getById(itemId)!
   } else {
-    return {} as WolfItem
+    const emptyItem = {} as WolfItem
+    emptyItem.imageFile = []
+    return emptyItem
   }
 })
 

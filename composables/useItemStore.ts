@@ -17,6 +17,7 @@ export const useItemStore = defineStore({
       if (data) {
         console.debug("'wolf_items' loaded from Supabase")
         this.items = data
+        this.items.forEach(item => enhanceWithImageData(item))
       } else {
         console.error("failed to load 'wolf_items' from Supabase")
         console.error(error)
@@ -38,10 +39,12 @@ export const useItemStore = defineStore({
             break
           }
         }
+        const item = data[0]
+        enhanceWithImageData(item)
         if (existing) {
-          this.items[existing] = data[0]
+          this.items[existing] = item
         } else {
-          this.items.push(data[0])
+          this.items.push(item)
         }
       } else {
         console.error(`failed to load item id = '${itemId}' from Supabase`)
@@ -58,3 +61,11 @@ export const useItemStore = defineStore({
     }
   }
 })
+
+function enhanceWithImageData (item: WolfItem) {
+  item.imageFile = []
+  item.imageFile[0] = {
+    name: item.image,
+    type: item.image.substring(item.image.lastIndexOf('.'))
+  }
+}

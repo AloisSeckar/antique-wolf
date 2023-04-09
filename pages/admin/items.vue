@@ -54,7 +54,7 @@ const saveItem = async (item: WolfItem) => {
     const itemId = itemData?.value?.itemId
     if (itemId) {
       console.debug('item ' + itemId + ' processed')
-      useItemStore().reloadItem(itemId)
+      await useItemStore().reloadItem(itemId)
       useItemStore().editedItem = itemId
       useModalStore().showModal('Informace', 'Změny byly úspěšně uloženy')
     } else {
@@ -71,10 +71,9 @@ const deleteItem = async (delId: number) => {
   useLoginStore().refresh()
   try {
     const { data: result } = await useFetch('/api/itemDelete', { method: 'POST', body: { itemId: delId } })
-    console.log(result.value)
     if (result.value?.result === 'OK') {
       console.debug('item ' + delId + ' deleted')
-      useItemStore().loadItems() // TODO only remove the one
+      await useItemStore().loadItems() // TODO only remove the one
       useItemStore().editedItem = -1
       useModalStore().showModal('Informace', 'Záznam byl úspěšně smazán')
     } else {
