@@ -1,6 +1,7 @@
+import { ImageResult } from '../types/apiTypes'
 import { serverSupabaseClient } from '#supabase/server'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (event): Promise<ImageResult> => {
   try {
     const body = await readMultipartFormData(event)
 
