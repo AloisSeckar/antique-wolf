@@ -1,11 +1,11 @@
 <template>
   <div>
     <div>
-      <ItemSelect @select-item="changeItem" />
+      <ItemSelect />
     </div>
     <h2>Editace údajů předmětu</h2>
     <div>
-      <ItemEditor :item-id="itemId" @save-item="saveItem" @delete-item="deleteItem" />
+      <ItemEditor @save-item="saveItem" @delete-item="deleteItem" />
     </div>
   </div>
 </template>
@@ -18,12 +18,6 @@ useLoginStore().refresh()
 definePageMeta({
   middleware: 'admin-items'
 })
-
-const itemId = ref(-1)
-const changeItem = (item: number) => {
-  useLoginStore().refresh()
-  itemId.value = item
-}
 
 const saveItem = async (item: WolfItem) => {
   useLoginStore().refresh()
@@ -61,8 +55,8 @@ const saveItem = async (item: WolfItem) => {
     if (itemId) {
       console.debug('item ' + itemId + ' processed')
       useItemStore().reloadItem(itemId)
+      useItemStore().editedItem = itemId
       useModalStore().showModal('Informace', 'Změny byly úspěšně uloženy')
-      changeItem(itemId)
     } else {
       console.error('Failed to save db entry')
       throw new Error(itemData?.value?.error)
@@ -79,11 +73,10 @@ const deleteItem = async (delId: number) => {
     const { data: result } = await useFetch('/api/itemDelete', { method: 'POST', body: { itemId: delId } })
     console.log(result.value)
     if (result.value?.result === 'OK') {
-      itemId.value = -1
       console.debug('item ' + delId + ' deleted')
       useItemStore().loadItems() // TODO only remove the one
+      useItemStore().editedItem = -1
       useModalStore().showModal('Informace', 'Záznam byl úspěšně smazán')
-      changeItem(-1)
     } else {
       console.error('Failed to save db entry')
       throw new Error(result.value?.result)

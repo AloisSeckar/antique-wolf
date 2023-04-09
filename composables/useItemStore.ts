@@ -4,7 +4,8 @@ export const useItemStore = defineStore({
   id: 'item-store',
   state: () => {
     return {
-      items: [] as WolfItem[]
+      items: [] as WolfItem[],
+      editedItem: -1
     }
   },
   actions: {

@@ -65,13 +65,10 @@
 <script setup lang="ts">
 import type { WolfItem } from '@/server/types/dbTypes'
 
-const props = defineProps({
-  itemId: { type: Number, required: true }
-})
-
 const wolfItem = computed(() => {
-  if (props.itemId !== -1) {
-    return useItemStore().getById(props.itemId)!
+  const itemId = useItemStore().editedItem
+  if (itemId !== -1) {
+    return useItemStore().getById(itemId)!
   } else {
     return {} as WolfItem
   }

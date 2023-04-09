@@ -2,13 +2,13 @@
   <div>
     <FormKit
       id="selectItem"
-      v-model="item"
+      v-model="useItemStore().editedItem"
       type="select"
       name="selectItem"
       label="Vyberte předmět pro editaci:"
       validation="required"
       :options="options"
-      @change="$emit('selectItem', item)"
+      @change="useLoginStore().refresh()"
     />
   </div>
 </template>
@@ -21,7 +21,4 @@ const options = computed(() => {
   items.unshift({ value: -1, label: '(založit nový předmět)' })
   return items
 })
-const item = ref(-1)
-
-defineEmits<{(e: 'selectItem', option: number): void}>()
 </script>
