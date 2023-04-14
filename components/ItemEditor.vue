@@ -24,7 +24,6 @@
         help="Lze psát pouze čísla nebo použít šipky nahoru/dolu"
         validation="required"
       />
-      <!-- TODO existujici image -->
       <FormKit
         id="image"
         v-model="wolfItem.imageFile"
@@ -32,9 +31,12 @@
         accept=".jpg,.png,.gif,.tif"
         multiple="false"
         label="Obrázek:"
-        help="Fotografie, která se zobrazí u předmětu"
+        :help="'Fotografie, která se zobrazí u předmětu' + (wolfItem.image ? ' (viz náhled níže)' : '')"
         validation="required"
       />
+      <div class="w-[300px] mx-auto mb-6">
+        <img v-if="wolfItem.image" :src="wolfItem.image" width="300" height="250">
+      </div>
       <FormKit
         id="valid"
         v-model="wolfItem.valid"
