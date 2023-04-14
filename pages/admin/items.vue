@@ -67,12 +67,12 @@ const saveItem = async (item: WolfItem) => {
   }
 }
 
-const deleteItem = async (delId: number) => {
+const deleteItem = async (itemId: number, image: string) => {
   useLoginStore().refresh()
   try {
-    const { data: result } = await useFetch('/api/itemDelete', { method: 'POST', body: { itemId: delId } })
+    const { data: result } = await useFetch('/api/itemDelete', { method: 'POST', body: { itemId, image } })
     if (result.value?.result === 'OK') {
-      console.debug('item ' + delId + ' deleted')
+      console.debug('item ' + itemId + ' deleted')
       await useItemStore().loadItems() // TODO only remove the one
       useItemStore().editedItem = -1
       useModalStore().showModal('Informace', 'Záznam byl úspěšně smazán')

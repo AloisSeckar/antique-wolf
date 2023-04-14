@@ -57,7 +57,7 @@
       type="button"
       label="Smazat"
       help="Zcela odstraní tento záznam z databáze"
-      @click="$emit('deleteItem', wolfItem.id)"
+      @click="$emit('deleteItem', wolfItem.id, wolfItem.image)"
     />
   </div>
 </template>
