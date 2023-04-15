@@ -70,12 +70,13 @@ import type { WolfItem } from '@/server/types/dbTypes'
 const wolfItem = computed(() => {
   const itemId = useItemStore().editedItem
   if (itemId !== -1) {
-    return useItemStore().getById(itemId)!
-  } else {
-    const emptyItem = {} as WolfItem
-    emptyItem.imageFile = []
-    return emptyItem
+    const storeItem = useItemStore().getById(itemId)
+    if (storeItem) {
+      return storeItem
+    }
   }
+  // fallback
+  return {} as WolfItem
 })
 
 defineEmits<{(e: 'saveItem', option: WolfItem): void, (e: 'deleteItem', itemId: number): void}>()
