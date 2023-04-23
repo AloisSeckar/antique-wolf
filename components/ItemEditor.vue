@@ -31,11 +31,12 @@
         accept=".jpg,.png,.gif,.tif"
         multiple="false"
         label="Obrázek:"
-        :help="'Fotografie, která se zobrazí u předmětu' + (wolfItem.image ? ' (viz náhled níže)' : '')"
+        :help="imageHint"
         validation="required"
+        @input="imageFileChanged"
       />
       <div class="w-[300px] mx-auto mb-6">
-        <img v-if="wolfItem.image" :src="wolfItem.image" width="300" height="250">
+        <img v-show="hasImage" :src="wolfItem.image" width="300" height="250">
       </div>
       <FormKit
         id="valid"
@@ -65,21 +66,33 @@
 </template>
 
 <script setup lang="ts">
-import type { WolfItem } from '@/server/types/dbTypes'
+import type { WolfFile, WolfItem } from '@/server/types/dbTypes'
 
 const wolfItem = computed(() => {
   const itemId = useItemStore().editedItem
   if (itemId !== -1) {
     const storeItem = useItemStore().getById(itemId)
     if (storeItem) {
-      return storeItem
+      return reactive(storeItem)
     }
   }
   // fallback
-  return {} as WolfItem
+  return reactive({} as WolfItem)
 })
 
 defineEmits<{(e: 'saveItem', option: WolfItem): void, (e: 'deleteItem', itemId: number): void}>()
+
+const imageFileChanged = (e: WolfFile[]) => {
+  const newImage = e[0]
+  if (newImage) {
+    wolfItem.value.image = URL.createObjectURL(newImage.file!)
+  } else {
+    wolfItem.value.image = ''
+  }
+}
+
+const hasImage = computed(() => !!wolfItem.value.image)
+const imageHint = computed(() => 'Fotografie, která se zobrazí u předmětu' + (wolfItem.value.image ? ' (viz náhled níže)' : ''))
 </script>
 
 <style>

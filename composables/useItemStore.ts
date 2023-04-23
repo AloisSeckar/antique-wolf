@@ -63,6 +63,7 @@ export const useItemStore = defineStore({
 })
 
 function enhanceWithImageData (item: WolfItem) {
+  item.dbImage = item.image
   item.imageFile = []
   item.imageFile[0] = {
     name: item.image,

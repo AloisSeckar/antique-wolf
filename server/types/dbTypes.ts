@@ -10,6 +10,7 @@ export type WolfItem = {
   description: string,
   price: number,
   image: string,
+  dbImage?: string,
   imageFile?: WolfFile[],
   created: Date,
   edited: Date,
