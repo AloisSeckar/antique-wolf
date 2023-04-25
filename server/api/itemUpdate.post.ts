@@ -18,12 +18,12 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
       .select()
 
     if (data && data[0]) {
-      console.debug('update successful')
+      console.debug(`item ${itemId} successfuly updated`)
       return {
         itemId
       }
     } else if (error) {
-      console.warn('update failed')
+      console.warn('item update failed')
       console.error(error)
       return {
         error: error.message
@@ -34,6 +34,8 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
       }
     }
   } catch (error: any) {
+    console.warn('item insert failed')
+    console.error(error)
     return {
       error: error.message
     }

@@ -18,6 +18,7 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
       })
 
     if (response.data && response.data.path) {
+      console.debug(`image ${fileName} successfuly uploaded`)
       return {
         url: supabaseAPI.getPublicUrl(response.data.path).data?.publicUrl
       }
@@ -31,6 +32,8 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
       }
     }
   } catch (error: any) {
+    console.warn('upload image failed')
+    console.error(error)
     return {
       error: error.message
     }

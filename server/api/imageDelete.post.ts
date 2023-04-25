@@ -13,7 +13,7 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
       result: 'OK'
     }
   } catch (error: any) {
-    console.warn('delete item failed')
+    console.warn('delete image failed')
     console.error(error)
     return {
       result: error.message

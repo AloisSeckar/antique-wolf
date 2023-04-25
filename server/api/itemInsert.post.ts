@@ -15,12 +15,12 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
       .select()
 
     if (data && data[0]) {
-      console.debug('insert successful')
+      console.debug(`item ${data[0].id} successfuly inserted`)
       return {
         itemId: data[0].id
       }
     } else if (error) {
-      console.warn('insert failed')
+      console.warn('item insert failed')
       console.error(error)
       return {
         error: error.message
@@ -31,6 +31,8 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
       }
     }
   } catch (error: any) {
+    console.warn('item insert failed')
+    console.error(error)
     return {
       error: error.message
     }

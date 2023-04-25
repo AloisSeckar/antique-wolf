@@ -8,9 +8,9 @@ export async function deleteImage (supabase: SupabaseClient<WolfItem>, image: st
       .from('wolf-images')
       .remove([imageFile])
     if (data) {
-      console.debug('item image removed from storage')
+      console.debug(`item image ${imageFile} successfuly removed from storage`)
     } else {
-      console.warn('failed to remove item image from storage')
+      console.warn(`failed to remove item image ${imageFile} from storage`)
       console.warn(error)
     }
   }

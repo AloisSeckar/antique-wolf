@@ -16,7 +16,7 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
 
     if (data && data[0]) {
       deleteImage(supabase, input.image)
-      console.debug('delete item successful')
+      console.debug(`item ${input?.itemId} successfuly deleted`)
       return {
         result: 'OK'
       }
