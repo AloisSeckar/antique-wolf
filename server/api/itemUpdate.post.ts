@@ -7,8 +7,9 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
     const item: WolfItem = await readBody(event)
     const itemId = item.id
 
-    delete item.id
-    delete item.imageFile
+    item.id = undefined
+    item.dbImage = undefined
+    item.imageFile = undefined
 
     const { data, error } = await serverSupabaseClient<WolfItemDB>(event)
       .from('wolf_items')

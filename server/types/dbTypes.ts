@@ -18,4 +18,4 @@ export type WolfItem = {
   valid: boolean
 }
 
-export type WolfItemDB = Omit<WolfItem, 'id'>
+export type WolfItemDB = Omit<WolfItem, 'id' | 'dbImage' | 'imageFile'>

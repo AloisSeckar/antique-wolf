@@ -47,7 +47,6 @@ const saveItem = async (item: WolfItem) => {
     }
     item.edited = new Date()
     item.author = useLoginStore().user.user!
-    delete item.imageFile
 
     // db entry
     const { data: itemData } = await processItem(item)

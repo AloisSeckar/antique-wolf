@@ -5,6 +5,10 @@ import { serverSupabaseClient } from '#supabase/server'
 export default defineEventHandler(async (event): Promise<ItemResult> => {
   try {
     const item = await readBody(event)
+
+    item.dbImage = undefined
+    item.imageFile = undefined
+
     const { data, error } = await serverSupabaseClient<WolfItemDB>(event)
       .from('wolf_items')
       .insert(item)
