@@ -24,8 +24,19 @@ const saveItem = async (item: WolfItem) => {
 
   try {
     // image
-    // TODO change existing
-    if (!item.id) {
+    const newItem = !item.id
+    const newImage = item.id && item.image !== item.dbImage
+
+    if (newItem || newImage) {
+      if (newImage) {
+        // delete old
+        const { data: imgDelData } = await useFetch('/api/imageDelete', { method: 'POST', body: { image: item.dbImage } })
+        if (imgDelData.value?.result !== 'OK') {
+          console.warn('Failed to delete old image')
+        }
+      }
+
+      // save new
       const formBody = new FormData()
       formBody.append('fileName', item.imageFile!.at(0)!.name)
       formBody.append('fileData', item.imageFile!.at(0)!.file!)
