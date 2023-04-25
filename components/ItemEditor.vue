@@ -83,9 +83,13 @@ const wolfItem = computed(() => {
 defineEmits<{(e: 'saveItem', option: WolfItem): void, (e: 'deleteItem', itemId: number): void}>()
 
 const imageFileChanged = (e: WolfFile[]) => {
-  const newImage = e[0]
-  if (newImage) {
-    wolfItem.value.image = URL.createObjectURL(newImage.file!)
+  const imageData = e[0]
+  if (imageData) {
+    if (imageData.file) {
+      wolfItem.value.image = URL.createObjectURL(imageData.file!)
+    } else {
+      wolfItem.value.image = imageData.name
+    }
   } else {
     wolfItem.value.image = ''
   }
