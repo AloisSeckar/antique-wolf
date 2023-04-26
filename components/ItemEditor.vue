@@ -15,6 +15,7 @@
         help="Text stručně charakterizující předmět"
         validation="required"
       />
+      <!-- not used atm
       <FormKit
         id="price"
         v-model="wolfItem.price"
@@ -24,6 +25,7 @@
         help="Lze psát pouze čísla nebo použít šipky nahoru/dolu"
         validation="required"
       />
+      -->
       <FormKit
         id="image"
         v-model="wolfItem.imageFile"

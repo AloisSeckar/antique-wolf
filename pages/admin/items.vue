@@ -58,6 +58,7 @@ const saveItem = async (item: WolfItem) => {
     }
     item.edited = new Date()
     item.author = useLoginStore().user.user!
+    item.price = 0 // not used atm
 
     // db entry
     const { data: itemData } = await processItem(item)
