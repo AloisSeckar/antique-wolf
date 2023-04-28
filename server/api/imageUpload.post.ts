@@ -5,9 +5,9 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
   try {
     const body = await readMultipartFormData(event)
 
-    if (!body!.at(0)) {
-      throw new Error('No body at 0!')
-    }
+    // if (!body!.at(0)) {
+    ///  throw new Error('No body at 0!')
+    // }
     if (!body!.at(1)) {
       throw new Error('No body at 1!')
     }
