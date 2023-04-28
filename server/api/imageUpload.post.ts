@@ -24,7 +24,8 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
       }
     } else if (response.error) {
       return {
-        error: response.error.message
+        error: response.error.message,
+        trace: response.error
       }
     } else {
       return {
@@ -35,7 +36,8 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
     console.warn('upload image failed')
     console.error(error)
     return {
-      error: error.message
+      error: error.message,
+      trace: error
     }
   }
 })

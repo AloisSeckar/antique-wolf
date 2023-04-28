@@ -23,7 +23,8 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
       console.warn('item insert failed')
       console.error(error)
       return {
-        error: error.message
+        error: error.message,
+        trace: error
       }
     } else {
       return {
@@ -34,7 +35,8 @@ export default defineEventHandler(async (event): Promise<ItemResult> => {
     console.warn('item insert failed')
     console.error(error)
     return {
-      error: error.message
+      error: error.message,
+      trace: error
     }
   }
 })
