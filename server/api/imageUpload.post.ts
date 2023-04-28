@@ -45,7 +45,7 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
     console.error(error)
     return {
       error: error.message,
-      trace: body
+      trace: event
     }
   }
 })

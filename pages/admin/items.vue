@@ -43,7 +43,7 @@ const saveItem = async (item: WolfItem) => {
       console.log(item)
       console.log(formBody.get('fileName'))
       console.log(formBody.get('fileData'))
-      const { data: imgData } = await useFetch('/api/imageUpload', { method: 'POST', headers: { 'Content-Type': 'multipart/form-data' }, body: formBody })
+      const { data: imgData } = await useFetch('/api/imageUpload', { method: 'POST', body: formBody })
       if (imgData?.value?.url) {
         item.image = imgData.value.url
       } else {
