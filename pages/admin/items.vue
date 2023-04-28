@@ -46,6 +46,7 @@ const saveItem = async (item: WolfItem) => {
       } else {
         console.error('Failed to save image')
         console.log(imgData?.value?.error)
+        console.log(imgData?.value?.trace)
         throw new Error(imgData?.value?.error)
       }
     }
