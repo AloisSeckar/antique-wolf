@@ -17,12 +17,12 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
         upsert: true
       })
 
-    if (response.data && response.data.path) {
+    if (response?.data && response?.data.path) {
       console.debug(`image ${fileName} successfuly uploaded`)
       return {
         url: supabaseAPI.getPublicUrl(response.data.path).data?.publicUrl
       }
-    } else if (response.error) {
+    } else if (response?.error) {
       return {
         error: response.error.message,
         trace: response.error
