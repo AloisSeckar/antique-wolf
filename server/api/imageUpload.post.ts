@@ -2,12 +2,13 @@ import { ImageResult } from '../types/apiTypes'
 import { serverSupabaseClient } from '#supabase/server'
 
 export default defineEventHandler(async (event): Promise<ImageResult> => {
+  let body
   try {
-    const body = await readMultipartFormData(event)
+    body = await readMultipartFormData(event)
 
-    // if (!body!.at(0)) {
-    ///  throw new Error('No body at 0!')
-    // }
+    if (!body!.at(0)) {
+      throw new Error('No body at 0!')
+    }
     if (!body!.at(1)) {
       throw new Error('No body at 1!')
     }
@@ -44,7 +45,7 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
     console.error(error)
     return {
       error: error.message,
-      trace: error
+      trace: body
     }
   }
 })
