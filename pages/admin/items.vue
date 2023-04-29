@@ -37,14 +37,7 @@ const saveItem = async (item: WolfItem) => {
       }
 
       // save new
-      /*
-      const formBody = new FormData()
-      formBody.append('fileName', item.imageFile!.at(0)!.name)
-      formBody.append('fileData', item.imageFile!.at(0)!.file!)
-      console.log(item)
-      console.log(formBody.get('fileName'))
-      console.log(formBody.get('fileData'))
-      */
+      // TODO use server-side logic `/api/imageUpload`
       const imgData = await useImageUploader(item.imageFile!.at(0)!.file!)
       if (imgData?.url) {
         item.image = imgData.url
@@ -77,6 +70,8 @@ const saveItem = async (item: WolfItem) => {
       useModalStore().showModal('Informace', 'Změny byly úspěšně uloženy')
     } else {
       console.error('Failed to save db entry')
+      console.log(itemData?.value?.error)
+      console.log(itemData?.value?.trace)
       throw new Error(itemData?.value?.error)
     }
   } catch (error) {

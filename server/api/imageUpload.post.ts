@@ -1,20 +1,12 @@
 import { ImageResult } from '../types/apiTypes'
 import { serverSupabaseClient } from '#supabase/server'
 
+// TODO
+// currently not used, because `await readMultipartFormData(event)` doesn't work on Netlify
+// should change back if help appears in https://github.com/unjs/h3/issues/330
 export default defineEventHandler(async (event): Promise<ImageResult> => {
-  console.log(event)
-
-  let body
   try {
-    body = await readMultipartFormData(event)
-    console.log(body)
-
-    if (!body!.at(0)) {
-      throw new Error('No body at 0!')
-    }
-    if (!body!.at(1)) {
-      throw new Error('No body at 1!')
-    }
+    const body = await readMultipartFormData(event)
 
     const fileName = body!.at(0)!.data.toString()
     const fileType = body!.at(1)!.type
@@ -48,7 +40,7 @@ export default defineEventHandler(async (event): Promise<ImageResult> => {
     console.error(error)
     return {
       error: error.message,
-      trace: event
+      trace: error
     }
   }
 })

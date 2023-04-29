@@ -2,11 +2,11 @@ export type ItemResult = {
   itemId?: number,
   result?: string,
   error?: string,
-  trace?: any,
+  trace?: unknown,
 }
 
 export type ImageResult = {
   url?: string,
   error?: string,
-  trace?: any,
+  trace?: unknown,
 }
