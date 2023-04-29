@@ -2,9 +2,12 @@ import { ImageResult } from '../types/apiTypes'
 import { serverSupabaseClient } from '#supabase/server'
 
 export default defineEventHandler(async (event): Promise<ImageResult> => {
+  console.log(event)
+
   let body
   try {
     body = await readMultipartFormData(event)
+    console.log(body)
 
     if (!body!.at(0)) {
       throw new Error('No body at 0!')

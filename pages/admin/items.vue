@@ -37,20 +37,22 @@ const saveItem = async (item: WolfItem) => {
       }
 
       // save new
+      /*
       const formBody = new FormData()
       formBody.append('fileName', item.imageFile!.at(0)!.name)
       formBody.append('fileData', item.imageFile!.at(0)!.file!)
       console.log(item)
       console.log(formBody.get('fileName'))
       console.log(formBody.get('fileData'))
-      const { data: imgData } = await useFetch('/api/imageUpload', { method: 'POST', body: formBody })
-      if (imgData?.value?.url) {
-        item.image = imgData.value.url
+      */
+      const imgData = await useImageUploader(item.imageFile!.at(0)!.file!)
+      if (imgData?.url) {
+        item.image = imgData.url
       } else {
         console.error('Failed to save image')
-        console.log(imgData?.value?.error)
-        console.log(imgData?.value?.trace)
-        throw new Error(imgData?.value?.error)
+        console.log(imgData?.error)
+        console.log(imgData?.trace)
+        throw new Error(imgData?.error)
       }
     }
 
