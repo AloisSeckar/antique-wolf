@@ -54,6 +54,7 @@
       type="submit"
       submit-label="Uložit"
       help="Uloží změny do databáze"
+      :disabled="useItemStore().pending"
       @click="$formkit.submit('wolf')"
     />
     <FormKit
@@ -62,6 +63,7 @@
       type="button"
       label="Smazat"
       help="Zcela odstraní tento záznam z databáze"
+      :disabled="useItemStore().pending"
       @click="$emit('deleteItem', wolfItem.id, wolfItem.image)"
     />
   </div>

@@ -21,6 +21,7 @@ definePageMeta({
 
 const saveItem = async (item: WolfItem) => {
   useLoginStore().refresh()
+  useItemStore().pending = true
 
   try {
     // image
@@ -78,10 +79,14 @@ const saveItem = async (item: WolfItem) => {
     console.error('Failed to save item')
     useModalStore().showModal('Chyba', 'Změny se nepodařilo uložit :(')
   }
+
+  useItemStore().pending = false
 }
 
 const deleteItem = async (itemId: number, image: string) => {
   useLoginStore().refresh()
+  useItemStore().pending = true
+
   try {
     const { data: result } = await useFetch('/api/itemDelete', { method: 'POST', body: { itemId, image } })
     if (result.value?.result === 'OK') {
@@ -97,6 +102,8 @@ const deleteItem = async (itemId: number, image: string) => {
     console.error('Failed to delete item')
     useModalStore().showModal('Chyba', 'Záznam se nepodařilo smazat :(')
   }
+
+  useItemStore().pending = false
 }
 
 async function processItem (body: WolfItem) {
