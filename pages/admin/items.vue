@@ -87,20 +87,22 @@ const deleteItem = async (itemId: number, image: string) => {
   useLoginStore().refresh()
   useItemStore().pending = true
 
-  try {
-    const { data: result } = await useFetch('/api/itemDelete', { method: 'POST', body: { itemId, image } })
-    if (result.value?.result === 'OK') {
-      console.debug('item ' + itemId + ' deleted')
-      await useItemStore().loadItems() // TODO only remove the one
-      useItemStore().editedItem = -1
-      useModalStore().showModal('Informace', 'Záznam byl úspěšně smazán')
-    } else {
-      console.error('Failed to save db entry')
-      throw new Error(result.value?.result)
+  if (confirm('Opravdu chcete předmět smazat?')) {
+    try {
+      const { data: result } = await useFetch('/api/itemDelete', { method: 'POST', body: { itemId, image } })
+      if (result.value?.result === 'OK') {
+        console.debug('item ' + itemId + ' deleted')
+        await useItemStore().loadItems() // TODO only remove the one
+        useItemStore().editedItem = -1
+        useModalStore().showModal('Informace', 'Záznam byl úspěšně smazán')
+      } else {
+        console.error('Failed to save db entry')
+        throw new Error(result.value?.result)
+      }
+    } catch (error) {
+      console.error('Failed to delete item')
+      useModalStore().showModal('Chyba', 'Záznam se nepodařilo smazat :(')
     }
-  } catch (error) {
-    console.error('Failed to delete item')
-    useModalStore().showModal('Chyba', 'Záznam se nepodařilo smazat :(')
   }
 
   useItemStore().pending = false
